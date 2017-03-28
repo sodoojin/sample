@@ -12194,15 +12194,19 @@ window.axios.defaults.headers.common = {
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    destroy: function destroy(id, href) {
-        if (confirm('정말 삭제하시겠습니까?')) {
-            __WEBPACK_IMPORTED_MODULE_0__api_article__["a" /* default */].destroy(id);
+    destroy: function destroy(id) {
+        var href = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
-            if (href != '') {
-                document.location.href = href;
-            } else {
-                document.location.reload();
-            }
+        if (confirm('정말 삭제하시겠습니까?')) {
+            __WEBPACK_IMPORTED_MODULE_0__api_article__["a" /* default */].destroy(id).then(function () {
+                if (href !== '') {
+                    document.location.href = href;
+                } else {
+                    document.location.reload();
+                }
+            }).catch(function () {
+                alert('삭제 실패');
+            });
         }
     }
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Validation\UnauthorizedException;
 
 class ArticleController extends Controller
 {
@@ -107,6 +108,8 @@ class ArticleController extends Controller
 
         if (Auth::user()->can('update', $article)) {
             Article::where('id', '=', $id)->delete();
+        } else {
+            throw new UnauthorizedException();
         }
 
         return [
