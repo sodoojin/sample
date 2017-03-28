@@ -55,22 +55,26 @@ class ArticleController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
-        return view('article.show');
+        $article = Article::find($id);
+
+        return view('article.show')->with(compact('article'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
-        return view('article.edit');
+        $article = Article::find($id);
+
+        return view('article.edit')->with(compact('article'));
     }
 
     /**
@@ -82,7 +86,13 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $article = Article::find($id);
+
+        $article->fill($request->all());
+
+        $article->save();
+
+        return redirect()->route('article.show', $article->id);
     }
 
     /**

@@ -12194,11 +12194,15 @@ window.axios.defaults.headers.common = {
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    destroy: function destroy(id) {
+    destroy: function destroy(id, href) {
         if (confirm('정말 삭제하시겠습니까?')) {
             __WEBPACK_IMPORTED_MODULE_0__api_article__["a" /* default */].destroy(id);
 
-            document.location.reload();
+            if (href != '') {
+                document.location.href = href;
+            } else {
+                document.location.reload();
+            }
         }
     }
 });
@@ -31693,7 +31697,7 @@ var Component = __webpack_require__(37)(
   /* cssModules */
   null
 )
-Component.options.__file = "D:\\work\\sample\\resources\\assets\\js\\components\\Example.vue"
+Component.options.__file = "/Users/doojinso/Sites/sample/resources/assets/js/components/Example.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
 

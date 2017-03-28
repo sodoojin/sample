@@ -1,11 +1,15 @@
 import articleApi from '../api/article';
 
 export default {
-    destroy(id) {
+    destroy(id, href) {
         if (confirm('정말 삭제하시겠습니까?')) {
             articleApi.destroy(id);
 
-            document.location.reload();
+            if (href != '') {
+                document.location.href = href;
+            } else {
+                document.location.reload();
+            }
         }
     }
 };

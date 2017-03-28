@@ -3,13 +3,13 @@
     <div class="form-group">
         <label for="title" class="control-label col-sm-2">타이틀</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control input-sm" id="title" name="title">
+            <input type="text" class="form-control input-sm" id="title" name="title" value="{{ old('title', isset($article) ? $article->title : '') }}">
         </div>
     </div>
     <div class="form-group">
         <label for="content" class="control-label col-sm-2">내용</label>
         <div class="col-sm-10">
-            <textarea class="form-control input-sm" id="content" name="content" rows="10"></textarea>
+            <textarea class="form-control input-sm" id="content" name="content" rows="10">{{ old('content', isset($article) ? $article->content : '') }}</textarea>
         </div>
     </div>
     <div class="form-group">
